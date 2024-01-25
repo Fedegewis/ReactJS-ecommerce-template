@@ -2,16 +2,27 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+// const config = {
+//   apiKey: "AIzaSyCZ1veQMvQwwkb1ka0-zVm2nrk7OgiyDmU",
+//   authDomain: "react-ecommerce-caf86.firebaseapp.com",
+//   databaseURL: "https://react-ecommerce-caf86.firebaseio.com",
+//   projectId: "react-ecommerce-caf86",
+//   storageBucket: "react-ecommerce-caf86.appspot.com",
+//   messagingSenderId: "522930649756",
+//   appId: "1:522930649756:web:f062c083dee844c8440b59",
+//   measurementId: "G-M8X1HNCPV0"
+// };
+
 const config = {
-  apiKey: "AIzaSyCZ1veQMvQwwkb1ka0-zVm2nrk7OgiyDmU",
-  authDomain: "react-ecommerce-caf86.firebaseapp.com",
-  databaseURL: "https://react-ecommerce-caf86.firebaseio.com",
-  projectId: "react-ecommerce-caf86",
-  storageBucket: "react-ecommerce-caf86.appspot.com",
-  messagingSenderId: "522930649756",
-  appId: "1:522930649756:web:f062c083dee844c8440b59",
-  measurementId: "G-M8X1HNCPV0"
+  apiKey: "AIzaSyAgEf9TNBE7YNOVtDsGhfceFcOrglUWRO8",
+  authDomain: "ecommerce-ac8bb.firebaseapp.com",
+  projectId: "ecommerce-ac8bb",
+  storageBucket: "ecommerce-ac8bb.appspot.com",
+  messagingSenderId: "440028162907",
+  appId: "1:440028162907:web:4f767198b87abd53e0887e",
+  databaseURL: "https://ecommerce-ac8bb.firebaseio.com"
 };
+
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
 

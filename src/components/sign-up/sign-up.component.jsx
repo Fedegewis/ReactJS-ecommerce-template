@@ -3,7 +3,7 @@ import './sign-up.styles.scss';
 
 import FormInput from '../form-input/form-input.component.jsx';
 import CustomButton from '../custom-button/custom-button.component.jsx';
-
+import * as amplitude from '@amplitude/analytics-browser';
 
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils.js'
 
@@ -31,6 +31,9 @@ class SignUp extends React.Component{
             return;
         }
 
+        console.log(email);
+        console.log(password);
+
         try{
             const {user} = await auth.createUserWithEmailAndPassword(
                 email, 
@@ -54,6 +57,9 @@ class SignUp extends React.Component{
 
         const {name, value} = event.target
         this.setState({[name]: value});
+    }
+    handleSignUp= (email,displayName) => {
+      amplitude.track('Registration Completed' );
     }
 
     render(){
@@ -99,7 +105,7 @@ class SignUp extends React.Component{
                 required
               />
 
-              <CustomButton type='submit'>SIGN UP</CustomButton>
+              <CustomButton onClick={() => this.handleSignUp(email,displayName)} type='submit'>SIGN UP</CustomButton>
             </form>
           </div>
         );

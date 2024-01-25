@@ -11,6 +11,14 @@ import { toggleCartHidden } from '../../redux/cart/cart.actions';
 
 
 import './cart-dropdown.styles.scss';
+import * as amplitude from '@amplitude/analytics-browser';
+
+const CheckOutLink = (cartItem) => {
+     const eventProperties = {
+       products: cartItem,
+       };
+    amplitude.track('Viewed cart ', eventProperties);
+  }
 
 const CartDropdown = ({ cartItems, history, dispatch }) => (
     <div className='cart-dropdown'>
@@ -27,11 +35,13 @@ const CartDropdown = ({ cartItems, history, dispatch }) => (
         <CustomButton 
             onClick={() => {
                 history.push('/checkout');
-                dispatch(toggleCartHidden())
+                dispatch(toggleCartHidden());
+                CheckOutLink(cartItems)
             }}> 
             GO TO CHECKOUT 
         </CustomButton>
     </div>
+    
 )
 
 const mapStateToProps = createStructuredSelector({

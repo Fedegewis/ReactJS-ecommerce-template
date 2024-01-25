@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -11,6 +11,22 @@ import { selectCartHidden } from "../../redux/cart/cart.selectors.js";
 import { selectCurrentUser } from "../../redux/user/user.selector.js";
 
 import "./header.styles.scss";
+import * as amplitude from '@amplitude/analytics-browser';
+
+const SignOut = () => {
+  auth.signOut();
+  amplitude.track('Signed Out');
+}
+
+const ExternalLink = ({ href, children }) => {
+  amplitude.track('Clicked on contact');
+
+  return (
+    <a className="option" href={href} target="_blank" rel="noopener noreferrer">
+      {children}
+    </a>
+  );
+}
 
 const Header = ({ currentUser, hidden }) => (
   <div className="header">
@@ -23,11 +39,12 @@ const Header = ({ currentUser, hidden }) => (
         SHOP
       </Link>
 
-      <Link className="option" to="/shop">
+      <ExternalLink href="https://amplitude.com/sales-contact">
         CONTACT
-      </Link>
+      </ExternalLink>
+
       {currentUser ? (
-        <div className="option" onClick={() => auth.signOut()}>
+        <div className="option" onClick={() => SignOut()}>
           SIGN OUT
         </div>
       ) : (

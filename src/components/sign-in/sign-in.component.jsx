@@ -5,6 +5,8 @@ import CustomButton from '../custom-button/custom-button.component';
 import {auth, signInWithGoogle} from '../../firebase/firebase.utils.js';
 import './sign-in.styles.scss';
 
+import * as amplitude from '@amplitude/analytics-browser';
+
 class SignIn extends React.Component{
     constructor(props){
         super(props);
@@ -14,7 +16,7 @@ class SignIn extends React.Component{
             password: ''
         }
     }
-
+    
     handleSubmit = async event => {
         event.preventDefault();
 
@@ -26,6 +28,15 @@ class SignIn extends React.Component{
         }catch(error){
           console.log(error)
         }
+    }
+
+    handleSignInWithGoogle = () => {
+      signInWithGoogle();
+      amplitude.track('Login Completed', {Tipo: "Google"});
+    }
+
+    handleSignIn= () => {
+      amplitude.track('Login Completed', {Tipo: "Email/Password"});
     }
 
     handleChange = event => {
@@ -59,8 +70,8 @@ class SignIn extends React.Component{
                 required
               />
               <div className='buttons' >
-                <CustomButton type="submit"> Sign In </CustomButton>
-                <CustomButton onClick={signInWithGoogle} isGoogleSignIn > Sign in with Google </CustomButton>
+                <CustomButton onClick={() => this.handleSignIn()} type="submit"> Sign In </CustomButton>
+                <CustomButton onClick={() => this.handleSignInWithGoogle()} isGoogleSignIn > Sign in with Google </CustomButton>
               </div>
             </form>
           </div>
