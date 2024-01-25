@@ -17,7 +17,7 @@ const CheckOutLink = (cartItem) => {
      const eventProperties = {
        products: cartItem,
        };
-    amplitude.track('Viewed cart ', eventProperties);
+    amplitude.track('Cart Viewed ', eventProperties);
   }
 
 const CartDropdown = ({ cartItems, history, dispatch }) => (
