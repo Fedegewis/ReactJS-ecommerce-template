@@ -1,10 +1,14 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import './menu-item.styles.scss';
+import { ampli } from '../../ampli/index.js';
 
 const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
   <div className={`${size} menu-item`} 
-       onClick={() => history.push(`${match.url}${linkUrl}`)}>
+       onClick={() => {
+        history.push(`${match.url}${linkUrl}`);
+        ampli.viewedProduct({type: title});
+       }}>
     <div
       className="background-image"
       style={{

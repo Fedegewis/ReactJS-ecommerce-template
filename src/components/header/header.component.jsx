@@ -9,8 +9,14 @@ import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component.jsx";
 import { selectCartHidden } from "../../redux/cart/cart.selectors.js";
 import { selectCurrentUser } from "../../redux/user/user.selector.js";
-
+import { ampli } from '../../ampli/index.js';
 import "./header.styles.scss";
+
+const ExternalLink =({href, children}) => {
+  ampli.clickedOnContact();
+}
+
+
 
 const Header = ({ currentUser, hidden }) => (
   <div className="header">
@@ -23,9 +29,9 @@ const Header = ({ currentUser, hidden }) => (
         SHOP
       </Link>
 
-      <Link className="option" to="/shop">
+      <ExternalLink href="https://amplitude.com/sales-contact">
         CONTACT
-      </Link>
+      </ExternalLink>
       {currentUser ? (
         <div className="option" onClick={() => auth.signOut()}>
           SIGN OUT
