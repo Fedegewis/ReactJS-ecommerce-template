@@ -27,7 +27,13 @@ class SignIn extends React.Component{
           console.log(error)
         }
     }
-
+    handleSignIn = () => {
+      amplitude.LoginCompleted({tipo : "Email/Password"});
+    }
+    handleSignInWithGoogle = () => {
+      signInWithGoogle();
+      amplitude.LoginCompleted({tipo : "Google"});
+    }
     handleChange = event => {
         const { value, name } = event.target;
 
