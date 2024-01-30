@@ -9,12 +9,23 @@ import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component.jsx";
 import { selectCartHidden } from "../../redux/cart/cart.selectors.js";
 import { selectCurrentUser } from "../../redux/user/user.selector.js";
-import { ampli } from '../../ampli/index.js';
+import { ampli } from '../../ampli/index.ts';
 import "./header.styles.scss";
 
-const ExternalLink =({href, children}) => {
-  ampli.clickedOnContact();
-}
+const ExternalLink = ({ href, children }) => {
+  const handleLinkClick = () => {
+    ampli.clickedOnContact();
+    // También podrías redirigir a la URL externa aquí si es necesario
+    // window.location.href = href;
+  };
+
+  return (
+    <a href={href} onClick={handleLinkClick} target="_blank" rel="noopener noreferrer">
+      {children}
+    </a>
+  );
+};
+
 
 
 
@@ -28,10 +39,10 @@ const Header = ({ currentUser, hidden }) => (
       <Link className="option" to="/shop">
         SHOP
       </Link>
-
       <ExternalLink href="https://amplitude.com/sales-contact">
         CONTACT
       </ExternalLink>
+
       {currentUser ? (
         <div className="option" onClick={() => auth.signOut()}>
           SIGN OUT

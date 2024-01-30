@@ -3,13 +3,13 @@ import './sign-up.styles.scss';
 
 import FormInput from '../form-input/form-input.component.jsx';
 import CustomButton from '../custom-button/custom-button.component.jsx';
-import { ampli } from '../../ampli/index.js';
+
 
 
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils.js'
 
 import './sign-up.styles.scss';
-import { ampli } from '../../ampli/index.js';
+import { ampli } from '../../ampli/index.ts';
 
 class SignUp extends React.Component{
     constructor(){
@@ -22,7 +22,9 @@ class SignUp extends React.Component{
             confirmPassword: ''
         }
     }
-
+    handleSignUp = () => {
+      ampli.registrationCompleted();
+    }
     handleSubmit = async event => {
         event.preventDefault();
 
@@ -101,7 +103,7 @@ class SignUp extends React.Component{
                 required
               />
 
-              <CustomButton onClick={() => ampli.registrationCompleted()} type='submit'>SIGN UP</CustomButton>
+              <CustomButton onClick={() => this.handleSignUp()} type='submit'>SIGN UP</CustomButton>
             </form>
           </div>
         );

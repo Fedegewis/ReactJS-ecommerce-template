@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CustomButton from '../custom-button/custom-button.component.jsx';
 import { addItem }from '../../redux/cart/cart.actions.js';
-import { ampli } from '../../ampli/index.js';
+import { ampli } from '../../ampli/index.ts';
 import './collection-item.styles.scss';
 
 const addItemToCart = (item) => {
