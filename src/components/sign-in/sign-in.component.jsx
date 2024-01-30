@@ -4,6 +4,7 @@ import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 import {auth, signInWithGoogle} from '../../firebase/firebase.utils.js';
 import './sign-in.styles.scss';
+import { ampli } from '../../ampli/index.js';
 
 class SignIn extends React.Component{
     constructor(props){
@@ -28,11 +29,12 @@ class SignIn extends React.Component{
         }
     }
     handleSignIn = () => {
-      amplitude.LoginCompleted({tipo : "Email/Password"});
+      ampli.loginCompleted({Tipo : "Email/Password"});
     }
+    
     handleSignInWithGoogle = () => {
       signInWithGoogle();
-      amplitude.LoginCompleted({tipo : "Google"});
+      ampli.loginCompleted({Tipo:"Google"});
     }
     handleChange = event => {
         const { value, name } = event.target;

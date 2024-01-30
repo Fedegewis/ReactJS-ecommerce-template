@@ -51,6 +51,194 @@ export type LoadOptionsWithClientInstance = LoadOptionsBase & { client: { instan
 
 export type LoadOptions = LoadOptionsWithEnvironment | LoadOptionsWithApiKey | LoadOptionsWithClientInstance;
 
+export interface AmplitudePageViewedProperties {
+  /**
+   * | Rule | Value |
+   * |---|---|
+   * | Regex |  |
+   */
+  "[Amplitude] Page Domain"?: string;
+  /**
+   * | Rule | Value |
+   * |---|---|
+   * | Regex |  |
+   */
+  "[Amplitude] Page Location"?: string;
+  /**
+   * | Rule | Value |
+   * |---|---|
+   * | Regex |  |
+   */
+  "[Amplitude] Page Path"?: string;
+  /**
+   * | Rule | Value |
+   * |---|---|
+   * | Regex |  |
+   */
+  "[Amplitude] Page Title"?: string;
+  /**
+   * | Rule | Value |
+   * |---|---|
+   * | Regex |  |
+   */
+  "[Amplitude] Page URL"?: string;
+  /**
+   * | Rule | Value |
+   * |---|---|
+   * | Regex |  |
+   */
+  referrer?: string;
+  /**
+   * | Rule | Value |
+   * |---|---|
+   * | Regex |  |
+   */
+  referring_domain?: string;
+}
+
+export interface AddToCartProperties {
+  /**
+   * | Rule | Value |
+   * |---|---|
+   * | Regex |  |
+   */
+  CustomButton?: string;
+}
+
+export interface ButtonClickedProperties {
+  /**
+   * | Rule | Value |
+   * |---|---|
+   * | Regex |  |
+   */
+  buttonColor?: string;
+}
+
+export interface LoginCompletedProperties {
+  /**
+   * | Rule | Value |
+   * |---|---|
+   * | Regex |  |
+   */
+  Tipo?: string;
+}
+
+export interface PasswordMistakeProperties {
+  /**
+   * | Rule | Value |
+   * |---|---|
+   * | Regex |  |
+   */
+  mail?: string;
+}
+
+export interface ViewedCartProperties {
+  products: any[];
+}
+
+export interface ViewedProductProperties {
+  /**
+   * | Rule | Value |
+   * |---|---|
+   * | Regex |  |
+   */
+  type?: string;
+}
+
+export class AmplitudePageViewed implements BaseEvent {
+  event_type = '[Amplitude] Page Viewed';
+
+  constructor(
+    public event_properties?: AmplitudePageViewedProperties,
+  ) {
+    this.event_properties = event_properties;
+  }
+}
+
+export class AddToCart implements BaseEvent {
+  event_type = 'Add to cart';
+
+  constructor(
+    public event_properties?: AddToCartProperties,
+  ) {
+    this.event_properties = event_properties;
+  }
+}
+
+export class AddedProductToCart implements BaseEvent {
+  event_type = 'Added product to cart';
+}
+
+export class ButtonClicked implements BaseEvent {
+  event_type = 'Button Clicked';
+
+  constructor(
+    public event_properties?: ButtonClickedProperties,
+  ) {
+    this.event_properties = event_properties;
+  }
+}
+
+export class CartButton implements BaseEvent {
+  event_type = 'Cart Button';
+}
+
+export class ClickedOnContact implements BaseEvent {
+  event_type = 'Clicked on contact';
+}
+
+export class LoginCompleted implements BaseEvent {
+  event_type = 'Login Completed';
+
+  constructor(
+    public event_properties?: LoginCompletedProperties,
+  ) {
+    this.event_properties = event_properties;
+  }
+}
+
+export class PasswordMistake implements BaseEvent {
+  event_type = 'Password Mistake';
+
+  constructor(
+    public event_properties?: PasswordMistakeProperties,
+  ) {
+    this.event_properties = event_properties;
+  }
+}
+
+export class RegistrationCompleted implements BaseEvent {
+  event_type = 'Registration Completed';
+}
+
+export class SessionEnd implements BaseEvent {
+  event_type = 'session_end';
+}
+
+export class SessionStart implements BaseEvent {
+  event_type = 'session_start';
+}
+
+export class ViewedCart implements BaseEvent {
+  event_type = 'Viewed cart';
+
+  constructor(
+    public event_properties: ViewedCartProperties,
+  ) {
+    this.event_properties = event_properties;
+  }
+}
+
+export class ViewedProduct implements BaseEvent {
+  event_type = 'Viewed product';
+
+  constructor(
+    public event_properties?: ViewedProductProperties,
+  ) {
+    this.event_properties = event_properties;
+  }
+}
+
 export type PromiseResult<T> = { promise: Promise<T | void> };
 
 const getVoidPromiseResult = () => ({ promise: Promise.resolve() });
@@ -160,6 +348,214 @@ export class Ampli {
     return this.amplitude!.track(event, undefined, options);
   }
 
+  /**
+   * [Amplitude] Page Viewed
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/productminds/Fede's%20Workspace/events/main/latest/%5BAmplitude%5D%20Page%20Viewed)
+   *
+   * Event has no description in tracking plan.
+   *
+   * @param properties The event's properties (e.g. [Amplitude] Page Domain)
+   * @param options Amplitude event options.
+   */
+  amplitudePageViewed(
+    properties?: AmplitudePageViewedProperties,
+    options?: EventOptions,
+  ) {
+    return this.track(new AmplitudePageViewed(properties), options);
+  }
+
+  /**
+   * Add to cart
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/productminds/Fede's%20Workspace/events/main/latest/Add%20to%20cart)
+   *
+   * Event has no description in tracking plan.
+   *
+   * @param properties The event's properties (e.g. CustomButton)
+   * @param options Amplitude event options.
+   */
+  addToCart(
+    properties?: AddToCartProperties,
+    options?: EventOptions,
+  ) {
+    return this.track(new AddToCart(properties), options);
+  }
+
+  /**
+   * Added product to cart
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/productminds/Fede's%20Workspace/events/main/latest/Added%20product%20to%20cart)
+   *
+   * Event has no description in tracking plan.
+   *
+   * @param options Amplitude event options.
+   */
+  addedProductToCart(
+    options?: EventOptions,
+  ) {
+    return this.track(new AddedProductToCart(), options);
+  }
+
+  /**
+   * Button Clicked
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/productminds/Fede's%20Workspace/events/main/latest/Button%20Clicked)
+   *
+   * Event has no description in tracking plan.
+   *
+   * @param properties The event's properties (e.g. buttonColor)
+   * @param options Amplitude event options.
+   */
+  buttonClicked(
+    properties?: ButtonClickedProperties,
+    options?: EventOptions,
+  ) {
+    return this.track(new ButtonClicked(properties), options);
+  }
+
+  /**
+   * Cart Button
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/productminds/Fede's%20Workspace/events/main/latest/Cart%20Button)
+   *
+   * Event has no description in tracking plan.
+   *
+   * @param options Amplitude event options.
+   */
+  cartButton(
+    options?: EventOptions,
+  ) {
+    return this.track(new CartButton(), options);
+  }
+
+  /**
+   * Clicked on contact
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/productminds/Fede's%20Workspace/events/main/latest/Clicked%20on%20contact)
+   *
+   * Event has no description in tracking plan.
+   *
+   * @param options Amplitude event options.
+   */
+  clickedOnContact(
+    options?: EventOptions,
+  ) {
+    return this.track(new ClickedOnContact(), options);
+  }
+
+  /**
+   * Login Completed
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/productminds/Fede's%20Workspace/events/main/latest/Login%20Completed)
+   *
+   * Event has no description in tracking plan.
+   *
+   * @param properties The event's properties (e.g. Tipo)
+   * @param options Amplitude event options.
+   */
+  loginCompleted(
+    properties?: LoginCompletedProperties,
+    options?: EventOptions,
+  ) {
+    return this.track(new LoginCompleted(properties), options);
+  }
+
+  /**
+   * Password Mistake
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/productminds/Fede's%20Workspace/events/main/latest/Password%20Mistake)
+   *
+   * Event has no description in tracking plan.
+   *
+   * @param properties The event's properties (e.g. mail)
+   * @param options Amplitude event options.
+   */
+  passwordMistake(
+    properties?: PasswordMistakeProperties,
+    options?: EventOptions,
+  ) {
+    return this.track(new PasswordMistake(properties), options);
+  }
+
+  /**
+   * Registration Completed
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/productminds/Fede's%20Workspace/events/main/latest/Registration%20Completed)
+   *
+   * Event has no description in tracking plan.
+   *
+   * @param options Amplitude event options.
+   */
+  registrationCompleted(
+    options?: EventOptions,
+  ) {
+    return this.track(new RegistrationCompleted(), options);
+  }
+
+  /**
+   * session_end
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/productminds/Fede's%20Workspace/events/main/latest/session_end)
+   *
+   * Event has no description in tracking plan.
+   *
+   * @param options Amplitude event options.
+   */
+  sessionEnd(
+    options?: EventOptions,
+  ) {
+    return this.track(new SessionEnd(), options);
+  }
+
+  /**
+   * session_start
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/productminds/Fede's%20Workspace/events/main/latest/session_start)
+   *
+   * Event has no description in tracking plan.
+   *
+   * @param options Amplitude event options.
+   */
+  sessionStart(
+    options?: EventOptions,
+  ) {
+    return this.track(new SessionStart(), options);
+  }
+
+  /**
+   * Viewed cart
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/productminds/Fede's%20Workspace/events/main/latest/Viewed%20cart)
+   *
+   * Event has no description in tracking plan.
+   *
+   * @param properties The event's properties (e.g. products)
+   * @param options Amplitude event options.
+   */
+  viewedCart(
+    properties: ViewedCartProperties,
+    options?: EventOptions,
+  ) {
+    return this.track(new ViewedCart(properties), options);
+  }
+
+  /**
+   * Viewed product
+   *
+   * [View in Tracking Plan](https://data.amplitude.com/productminds/Fede's%20Workspace/events/main/latest/Viewed%20product)
+   *
+   * Event has no description in tracking plan.
+   *
+   * @param properties The event's properties (e.g. type)
+   * @param options Amplitude event options.
+   */
+  viewedProduct(
+    properties?: ViewedProductProperties,
+    options?: EventOptions,
+  ) {
+    return this.track(new ViewedProduct(properties), options);
+  }
 }
 
 export const ampli = new Ampli();
