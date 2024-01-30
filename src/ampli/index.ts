@@ -18,7 +18,7 @@
  */
 
 import * as amplitude from '@amplitude/analytics-browser';
-
+amplitude.init('0265e5f320a74be0ca52d7fc0320a62b');
 export type Environment = 'default';
 
 export const ApiKey: Record<Environment, string> = {
