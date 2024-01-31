@@ -51,51 +51,6 @@ export type LoadOptionsWithClientInstance = LoadOptionsBase & { client: { instan
 
 export type LoadOptions = LoadOptionsWithEnvironment | LoadOptionsWithApiKey | LoadOptionsWithClientInstance;
 
-export interface AmplitudePageViewedProperties {
-  /**
-   * | Rule | Value |
-   * |---|---|
-   * | Regex |  |
-   */
-  "[Amplitude] Page Domain"?: string;
-  /**
-   * | Rule | Value |
-   * |---|---|
-   * | Regex |  |
-   */
-  "[Amplitude] Page Location"?: string;
-  /**
-   * | Rule | Value |
-   * |---|---|
-   * | Regex |  |
-   */
-  "[Amplitude] Page Path"?: string;
-  /**
-   * | Rule | Value |
-   * |---|---|
-   * | Regex |  |
-   */
-  "[Amplitude] Page Title"?: string;
-  /**
-   * | Rule | Value |
-   * |---|---|
-   * | Regex |  |
-   */
-  "[Amplitude] Page URL"?: string;
-  /**
-   * | Rule | Value |
-   * |---|---|
-   * | Regex |  |
-   */
-  referrer?: string;
-  /**
-   * | Rule | Value |
-   * |---|---|
-   * | Regex |  |
-   */
-  referring_domain?: string;
-}
-
 export interface AddToCartProperties {
   /**
    * | Rule | Value |
@@ -143,16 +98,6 @@ export interface ViewedProductProperties {
    * | Regex |  |
    */
   type?: string;
-}
-
-export class AmplitudePageViewed implements BaseEvent {
-  event_type = '[Amplitude] Page Viewed';
-
-  constructor(
-    public event_properties?: AmplitudePageViewedProperties,
-  ) {
-    this.event_properties = event_properties;
-  }
 }
 
 export class AddToCart implements BaseEvent {
@@ -346,23 +291,6 @@ export class Ampli {
     }
 
     return this.amplitude!.track(event, undefined, options);
-  }
-
-  /**
-   * [Amplitude] Page Viewed
-   *
-   * [View in Tracking Plan](https://data.amplitude.com/productminds/Fede's%20Workspace/events/main/latest/%5BAmplitude%5D%20Page%20Viewed)
-   *
-   * Event has no description in tracking plan.
-   *
-   * @param properties The event's properties (e.g. [Amplitude] Page Domain)
-   * @param options Amplitude event options.
-   */
-  amplitudePageViewed(
-    properties?: AmplitudePageViewedProperties,
-    options?: EventOptions,
-  ) {
-    return this.track(new AmplitudePageViewed(properties), options);
   }
 
   /**

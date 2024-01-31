@@ -15,7 +15,7 @@ import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selector';
 
 import "./App.css";
-import * as amplitude from '@amplitude/analytics-browser';
+
 
 
 class App extends React.Component{
