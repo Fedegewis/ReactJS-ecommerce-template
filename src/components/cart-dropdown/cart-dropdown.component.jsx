@@ -15,6 +15,7 @@ import './cart-dropdown.styles.scss';
 
 const checkoutLink = (cartItems) => {
     ampli.viewedCart(cartItems);
+    
 }
 
 const CartDropdown = ({ cartItems, history, dispatch }) => (
