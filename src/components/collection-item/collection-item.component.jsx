@@ -5,14 +5,16 @@ import { addItem }from '../../redux/cart/cart.actions.js';
 import { ampli } from '../../ampli/index.ts';
 import './collection-item.styles.scss';
 
-const addItemToCart = (item) => {
-  addItem(item);
-  ampli.addedProductToCart();
-}
-
 
 const CollectionItem = ({item, addItem}) => {
     const {name, price, imageUrl} = item;
+
+
+    const addItemToCart = (item) => {
+      addItem(item);
+      ampli.addedProductToCart();
+    }
+
     return (
       <div className="collection-item">
         <div
