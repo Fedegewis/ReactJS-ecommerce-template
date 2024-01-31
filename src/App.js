@@ -27,15 +27,15 @@ class App extends React.Component{
 
     //---------------------------------------------AMPLITUDE-----------------------------------------------------------
     const AMPLITUDE_API_KEY = '0265e5f320a74be0ca52d7fc0320a62b';
-    //amplitude.init(AMPLITUDE_API_KEY);
-    amplitude.init(AMPLITUDE_API_KEY, {
-      defaultTracking: {
-        pageViews: false,
-        sessions: true,
-        formInteractions: false,
-        fileDownloads: false,
-      },
-    });
+    amplitude.init(AMPLITUDE_API_KEY);
+    // amplitude.init(AMPLITUDE_API_KEY, {
+    //   defaultTracking: {
+    //     pageViews: false,
+    //     sessions: true,
+    //     formInteractions: false,
+    //     fileDownloads: false,
+    //   },
+    // });
     
     //---------------------------------------------AMPLITUDE-----------------------------------------------------------
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
