@@ -22,9 +22,7 @@ class SignUp extends React.Component{
             confirmPassword: ''
         }
     }
-    handleSignUp = () => {
-      ampli.registrationCompleted();
-    }
+    
     handleSubmit = async event => {
         event.preventDefault();
 
@@ -59,7 +57,9 @@ class SignUp extends React.Component{
         const {name, value} = event.target
         this.setState({[name]: value});
     }
-
+    handleSignUp = () => {
+      ampli.registrationCompleted();
+    }
     render(){
         const {displayName, email, password, confirmPassword } = this.state
         return (
