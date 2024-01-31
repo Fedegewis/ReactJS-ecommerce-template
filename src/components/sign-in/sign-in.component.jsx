@@ -4,6 +4,7 @@ import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 import {auth, signInWithGoogle} from '../../firebase/firebase.utils.js';
 import './sign-in.styles.scss';
+import { ampli } from '../../ampli/index.ts';
 
 class SignIn extends React.Component{
     constructor(props){
@@ -27,7 +28,14 @@ class SignIn extends React.Component{
           console.log(error)
         }
     }
-
+    handleSignIn = () => {
+      ampli.loginCompleted({Tipo : "Email/Password"});
+    }
+    
+    handleSignInWithGoogle = () => {
+      signInWithGoogle();
+      ampli.loginCompleted({Tipo:"Google"});
+    }
     handleChange = event => {
         const { value, name } = event.target;
 
@@ -59,8 +67,8 @@ class SignIn extends React.Component{
                 required
               />
               <div className='buttons' >
-                <CustomButton type="submit"> Sign In </CustomButton>
-                <CustomButton onClick={signInWithGoogle} isGoogleSignIn > Sign in with Google </CustomButton>
+                <CustomButton onClick={()=> this.handleSignIn()} type="submit"> Sign In </CustomButton>
+                <CustomButton onClick={()=> this.handleSignInWithGoogle()} isGoogleSignIn > Sign in with Google </CustomButton>
               </div>
             </form>
           </div>

@@ -9,8 +9,13 @@ import CustomButton from "../custom-button/custom-button.component.jsx";
 import { selectCartItems } from "../../redux/cart/cart.selectors";
 import { toggleCartHidden } from '../../redux/cart/cart.actions';
 
-
+import { ampli } from '../../ampli/index.ts';
 import './cart-dropdown.styles.scss';
+
+
+const checkoutLink = (cartItems) => {
+    ampli.viewedCart(cartItems);
+}
 
 const CartDropdown = ({ cartItems, history, dispatch }) => (
     <div className='cart-dropdown'>
@@ -28,6 +33,7 @@ const CartDropdown = ({ cartItems, history, dispatch }) => (
             onClick={() => {
                 history.push('/checkout');
                 dispatch(toggleCartHidden())
+                checkoutLink(cartItems);
             }}> 
             GO TO CHECKOUT 
         </CustomButton>
