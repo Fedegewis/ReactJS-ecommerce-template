@@ -15,8 +15,8 @@ import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selector';
 
 import "./App.css";
-import * as amplitude from '@amplitude/analytics-browser';
 
+import { ampli } from './ampli/index.ts'
 
 class App extends React.Component{
   unsubscribeFromAuth = null
@@ -27,16 +27,10 @@ class App extends React.Component{
 
     //---------------------------------------------AMPLITUDE-----------------------------------------------------------
     const AMPLITUDE_API_KEY = '0265e5f320a74be0ca52d7fc0320a62b';
-    amplitude.init(AMPLITUDE_API_KEY);
-    // amplitude.init(AMPLITUDE_API_KEY, {
-    //   defaultTracking: {
-    //     pageViews: false,
-    //     sessions: true,
-    //     formInteractions: false,
-    //     fileDownloads: false,
-    //   },
-    // });
+  
     
+    ampli.load({client:{apiKey:AMPLITUDE_API_KEY}})
+    ampli.client.setUserId('21321343');
     //---------------------------------------------AMPLITUDE-----------------------------------------------------------
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if(userAuth){
