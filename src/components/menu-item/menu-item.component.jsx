@@ -2,11 +2,13 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import './menu-item.styles.scss';
 import { ampli } from '../../ampli/index.ts';
+import * as braze from "@braze/web-sdk";
 
 
 
 const ProductViewed = (title) => {
   ampli.viewedProduct({type: title});
+  braze.logCustomEvent("Viewed Product",{type: title});
 }
 const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
   <div className={`${size} menu-item`} 

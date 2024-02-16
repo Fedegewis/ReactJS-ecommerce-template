@@ -9,13 +9,14 @@ import CustomButton from "../custom-button/custom-button.component.jsx";
 import { selectCartItems } from "../../redux/cart/cart.selectors";
 import { toggleCartHidden } from '../../redux/cart/cart.actions';
 
-import { ampli } from '../../ampli/index.ts';
+import { ViewedCart, ampli } from '../../ampli/index.ts';
+import * as braze from "@braze/web-sdk";
 import './cart-dropdown.styles.scss';
 
 
 const checkoutLink = (cartItems) => {
     ampli.viewedCart(cartItems);
-    
+    braze.logCustomEvent("Viewed Cart",{Producto:cartItems});
 }
 
 const CartDropdown = ({ cartItems, history, dispatch }) => (

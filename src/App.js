@@ -16,7 +16,8 @@ import { selectCurrentUser } from './redux/user/user.selector';
 
 import "./App.css";
 
-import { ampli } from './ampli/index.ts'
+import { ampli } from './ampli/index.ts';
+import * as braze from "@braze/web-sdk";
 
 class App extends React.Component{
   unsubscribeFromAuth = null
@@ -32,6 +33,17 @@ class App extends React.Component{
     ampli.load({client:{apiKey:AMPLITUDE_API_KEY}})
     ampli.client.setUserId('21321343');
     //---------------------------------------------AMPLITUDE-----------------------------------------------------------
+
+    //--------------------------------------BRAZE----------------------------------------------------------------------
+    braze.initialize('0431d032-d354-4af8-8f9d-6b06c21bd3d6', {
+      baseUrl: "sdk.iad-06.braze.com"
+    });
+    braze.openSession();
+    braze.changeUser("FEDE_123");
+    braze.getUser().setEmail("federico.gewisgold@productminds.io");
+  
+    //--------------------------------------BRAZE----------------------------------------------------------------------
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if(userAuth){
         const userRef = await createUserProfileDocument(userAuth)

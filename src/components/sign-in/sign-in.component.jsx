@@ -5,6 +5,7 @@ import CustomButton from '../custom-button/custom-button.component';
 import {auth, signInWithGoogle} from '../../firebase/firebase.utils.js';
 import './sign-in.styles.scss';
 import { ampli } from '../../ampli/index.ts';
+import * as braze from "@braze/web-sdk";
 
 class SignIn extends React.Component{
     constructor(props){
@@ -30,11 +31,13 @@ class SignIn extends React.Component{
     }
     handleSignIn = () => {
       ampli.loginCompleted({Tipo : "Email/Password"});
+      braze.logCustomEvent("Login Completed",{Tipo:"Email/Password"});
     }
     
     handleSignInWithGoogle = () => {
       signInWithGoogle();
       ampli.loginCompleted({Tipo:"Google"});
+      braze.logCustomEvent("Login Completed",{Tipo:"Google"});
     }
     handleChange = event => {
         const { value, name } = event.target;

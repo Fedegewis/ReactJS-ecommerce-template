@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import CustomButton from '../custom-button/custom-button.component.jsx';
 import { addItem }from '../../redux/cart/cart.actions.js';
 import { ampli } from '../../ampli/index.ts';
+import * as braze from "@braze/web-sdk";
 import './collection-item.styles.scss';
 
 
@@ -13,6 +14,7 @@ const CollectionItem = ({item, addItem}) => {
     const addItemToCart = (item) => {
       addItem(item);
       ampli.addedProductToCart();
+      braze.logCustomEvent("Added Product to Cart");
     }
 
     return (

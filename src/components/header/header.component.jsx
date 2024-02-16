@@ -10,13 +10,13 @@ import CartDropdown from "../cart-dropdown/cart-dropdown.component.jsx";
 import { selectCartHidden } from "../../redux/cart/cart.selectors.js";
 import { selectCurrentUser } from "../../redux/user/user.selector.js";
 import { ampli } from '../../ampli/index.ts';
+import * as braze from "@braze/web-sdk";
 import "./header.styles.scss";
 
 const ExternalLink = ({ href, children }) => {
   const handleLinkClick = () => {
     ampli.clickedOnContact();
-    // También podrías redirigir a la URL externa aquí si es necesario
-    // window.location.href = href;
+    braze.logCustomEvent("Clicked on Contact");
   };
 
   return (

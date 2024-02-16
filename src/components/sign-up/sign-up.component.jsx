@@ -10,6 +10,7 @@ import { auth, createUserProfileDocument } from '../../firebase/firebase.utils.j
 
 import './sign-up.styles.scss';
 import { ampli } from '../../ampli/index.ts';
+import * as braze from "@braze/web-sdk";
 
 class SignUp extends React.Component{
     constructor(){
@@ -59,6 +60,7 @@ class SignUp extends React.Component{
     }
     handleSignUp = () => {
       ampli.registrationCompleted();
+      braze.logCustomEvent("Registration Completed");
     }
     render(){
         const {displayName, email, password, confirmPassword } = this.state
