@@ -14,7 +14,7 @@ const CollectionItem = ({item, addItem}) => {
     const addItemToCart = (item) => {
       addItem(item);
       ampli.addedProductToCart();
-      braze.logCustomEvent("Added Product to Cart");
+      braze.logCustomEvent("Added Product to Cart",{product:item});
     }
 
     return (
