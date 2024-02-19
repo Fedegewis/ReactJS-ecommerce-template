@@ -45,7 +45,6 @@ class App extends React.Component{
     braze.requestPushPermission();
     if(braze.isPushSupported() === true){
       braze.isPushPermissionGranted();
-      
     }
 
     
