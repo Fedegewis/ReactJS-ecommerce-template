@@ -32,6 +32,7 @@ class App extends React.Component{
     
     ampli.load({client:{apiKey:AMPLITUDE_API_KEY}})
     ampli.client.setUserId('21321343');
+
     //---------------------------------------------AMPLITUDE-----------------------------------------------------------
 
     //--------------------------------------BRAZE----------------------------------------------------------------------
@@ -41,7 +42,13 @@ class App extends React.Component{
     braze.openSession();
     braze.changeUser("FEDE_123");
     braze.getUser().setEmail("federico.gewisgold@productminds.io");
-  
+    braze.requestPushPermission();
+    if(braze.isPushSupported() === true){
+      braze.isPushPermissionGranted();
+      
+    }
+
+    
     //--------------------------------------BRAZE----------------------------------------------------------------------
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
