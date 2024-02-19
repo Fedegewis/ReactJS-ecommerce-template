@@ -43,6 +43,7 @@ class App extends React.Component{
       },
     });
     
+    
     //---------------------------------------------AMPLITUDE-----------------------------------------------------------
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
