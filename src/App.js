@@ -43,9 +43,11 @@ class App extends React.Component{
     braze.changeUser("FEDE_123");
     braze.getUser().setEmail("federico.gewisgold@productminds.io");
     braze.requestPushPermission();
-    if(braze.isPushSupported() === true){
-      braze.isPushPermissionGranted();
-    }
+    // if(braze.isPushSupported()=== true){
+    //   braze.isPushPermissionGranted();
+    // }
+   
+    
 
     
     //--------------------------------------BRAZE----------------------------------------------------------------------
