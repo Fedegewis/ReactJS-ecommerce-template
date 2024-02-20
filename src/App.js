@@ -48,7 +48,7 @@ class App extends React.Component{
       braze.requestImmediateDataFlush();
     });
 
-
+  
     
     //--------------------------------------BRAZE----------------------------------------------------------------------
 
