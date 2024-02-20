@@ -37,17 +37,17 @@ class App extends React.Component{
 
     //--------------------------------------BRAZE----------------------------------------------------------------------
     braze.initialize('0431d032-d354-4af8-8f9d-6b06c21bd3d6', {
-      baseUrl: "sdk.iad-06.braze.com"
+      baseUrl: "sdk.iad-06.braze.com",
+      serviceWorkerLocation:"/service-worker.js"
     });
     braze.openSession();
     braze.changeUser("FEDE_123");
-    braze.getUser().setEmail("federico.gewisgold@productminds.io");
-    braze.requestPushPermission();
-    // if(braze.isPushSupported()=== true){
-    //   braze.isPushPermissionGranted();
-    // }
-   
-    
+    braze.getUser().setEmail("federico.gewisgold@productminds.io");  
+    braze.requestPushPermission(() => {
+      braze.logCustomEvent("send me push");
+      braze.requestImmediateDataFlush();
+    });
+
 
     
     //--------------------------------------BRAZE----------------------------------------------------------------------

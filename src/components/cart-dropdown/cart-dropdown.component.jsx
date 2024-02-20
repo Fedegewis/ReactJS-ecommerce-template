@@ -9,7 +9,7 @@ import CustomButton from "../custom-button/custom-button.component.jsx";
 import { selectCartItems } from "../../redux/cart/cart.selectors";
 import { toggleCartHidden } from '../../redux/cart/cart.actions';
 
-import { ViewedCart, ampli } from '../../ampli/index.ts';
+import {ampli } from '../../ampli/index.ts';
 import * as braze from "@braze/web-sdk";
 import './cart-dropdown.styles.scss';
 
